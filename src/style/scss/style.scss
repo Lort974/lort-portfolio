@@ -1,0 +1,123 @@
+@import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
+
+@import "./libs/variables.scss";
+@import "./libs/mixins.scss";
+@import "./libs/themes.scss";
+@import "./libs/header.scss";
+@import "./libs/footer.scss";
+@import "./libs/hero.scss";
+@import "./libs/story.scss";
+@import "./libs/skills.scss";
+@import "./libs/projects.scss";
+@import "./libs/contact.scss";
+
+a {
+  color: unset;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  transition-property: color, background-color;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
+body {
+  background-color: var(--app-background);
+  color: var(--high-text);
+  font-family: $font-main;
+  margin: 0;
+  overflow-x: hidden;
+  font-size: $normal-font-desktop;
+
+  @include respond-to(mobile) {
+    font-size: $normal-font-mobile;
+  }
+}
+
+h1 {
+  font-size: $title-one-desktop;
+  font-weight: 700;
+  margin: 0;
+  font-family: $font-title;
+
+  @include respond-to(mobile) {
+    font-size: $title-one-mobile;
+  }
+}
+
+h2 {
+  font-size: $title-two-desktop;
+  font-weight: 700;
+  margin: 0;
+  font-family: $font-title;
+
+  @include respond-to(mobile) {
+    font-size: $title-two-mobile;
+  }
+}
+
+h4 {
+  font-size: $title-four-desktop;
+  font-weight: 400;
+  margin: 0;
+  font-family: $font-title;
+
+  @include respond-to(mobile) {
+    font-size: $title-four-mobile;
+  }
+}
+
+p {
+  margin: 0;
+  max-width: 600px;
+}
+
+section {
+  padding: 80px 128px;
+  margin-bottom: 32px;
+
+  @include respond-to(mobile) {
+    padding: 64px 16px;
+    width: 100vw;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  h1 {
+    z-index: 2;
+  }
+}
+
+button {
+  height: 48px;
+  padding: 0 16px;
+  font-family: $font-main;
+  font-size: $normal-font-desktop;
+  background-color: var(--action);
+  color: var(--button-text);
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  // box-shadow: 0 0 8px var(--low-text);
+  transition: all 200ms ease;
+
+  @include respond-to(mobile) {
+    font-size: $normal-font-mobile;
+  }
+
+  &:hover {
+    background-color: var(--action-hover);
+    // box-shadow: 0 0 8px var(--low-text);
+  }
+
+  &:active {
+    background-color: var(--action);
+    // box-shadow: 0 0 0 var(--low-text);
+  }
+}

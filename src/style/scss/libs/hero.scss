@@ -1,0 +1,57 @@
+@import "./variables.scss";
+@import "./animations.scss";
+
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+
+  .hero__content {
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 32px;
+
+    .hero__content__title {
+    }
+
+    .hero__content__text {
+    }
+
+    .hero__content__action {
+      margin-top: 32px;
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .hero__background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0%;
+    z-index: -2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 16%;
+
+    // &::after {
+    //   content: "";
+    //   position: absolute;
+    //   height: 100%;
+    //   width: 100%;
+    //   left: 0;
+    //   top: 0;
+    //   z-index: -1;
+    //   background-color: $dark-app-background;
+    //   opacity: 10%;
+    // }
+  }
+}

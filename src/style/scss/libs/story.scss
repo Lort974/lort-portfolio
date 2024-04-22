@@ -1,0 +1,156 @@
+@import "./mixins.scss";
+
+.story {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 64px;
+  position: relative;
+
+  .story__background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 100%;
+  }
+
+  .story__title {
+    z-index: 2;
+  }
+
+  .story__content {
+    position: relative;
+    width: 100%;
+    height: 320px;
+
+    @include respond-to(mobile) {
+      height: 400px;
+    }
+  }
+
+  .story__content__timeline {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 64px;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    transition: all 300ms ease-out;
+
+    @include respond-to(mobile) {
+      height: 400px;
+    }
+
+    .story__content__timeline__card > * {
+      transition: all 100ms ease;
+    }
+
+    &.story__content__timeline--moving .story__content__timeline__card {
+      // transform: skewX(4Sdeg);
+    }
+
+    &.story__content__timeline--moving .story__content__timeline__card > * {
+      filter: blur(4px);
+    }
+
+    .story__content__timeline__card {
+      background-color: var(--transparent-background);
+      border: 1px solid var(--static-border);
+      box-shadow: 0 0px 8px var(--static-border);
+      border-radius: 8px;
+      backdrop-filter: blur(8px);
+      box-sizing: border-box;
+      height: 100%;
+      width: 480px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+
+      @include respond-to(mobile) {
+        width: 90vw;
+      }
+
+      .story__content__timeline__card__title {
+      }
+
+      .story__content__timeline__card__content {
+        display: flex;
+        gap: 32px;
+
+        @include respond-to(mobile) {
+          flex-direction: column;
+        }
+
+        .story__content__timeline__card__content__picture {
+          width: 120px;
+
+          img {
+            width: 120px;
+          }
+
+          @include respond-to(mobile) {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            img {
+              width: 80px;
+            }
+          }
+        }
+
+        .story__content__timeline__card__content__text {
+        }
+      }
+    }
+  }
+
+  .story__navigation {
+    border-radius: 50%;
+    height: 48px;
+    width: 48px;
+    padding: unset;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+
+    &.story__navigation--previous {
+      left: 32px;
+    }
+
+    &.story__navigation--next {
+      right: 32px;
+    }
+
+    svg {
+      height: 24px;
+      width: 24px;
+    }
+
+    @include respond-to(mobile) {
+      height: 40px;
+      width: 40px;
+
+      &.story__navigation--previous {
+        left: 8px;
+      }
+
+      &.story__navigation--next {
+        right: 8px;
+      }
+
+      svg {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+}

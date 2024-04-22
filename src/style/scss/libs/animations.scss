@@ -1,0 +1,269 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes element-click {
+    0% {
+      left: -100%;
+      opacity: 0%;
+    }
+
+    100% {
+      left: 0%;
+      opacity: 100%;
+    }
+  }
+
+  @keyframes text-fade-in {
+    to {
+      translate: 0 0;
+      scale: 1;
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-out {
+    50%,
+    100% {
+      opacity: 0;
+      translate: 0 -40px;
+    }
+  }
+
+  @keyframes hero-background-animation {
+    85%,
+    100% {
+      opacity: 0;
+      scale: 3;
+    }
+  }
+
+  @keyframes image-fade-in {
+    to {
+      opacity: 1;
+      scale: 1;
+    }
+  }
+
+  @keyframes background-fade-in {
+    to {
+      opacity: 32%;
+      translate: 0 0;
+    }
+  }
+
+  @keyframes story-timeline {
+    from {
+      left: 100%;
+    }
+    to {
+      left: 0px;
+    }
+  }
+
+  @keyframes interactive-element-pop-up {
+    to {
+      scale: 1;
+    }
+  }
+
+  @keyframes skills-headers-pop-up {
+    0% {
+      translate: 0 96px;
+    }
+
+    40%,
+    60% {
+      translate: 0 -32px;
+    }
+
+    80% {
+      translate: 0 16px;
+    }
+
+    100% {
+      translate: 0 0;
+    }
+  }
+
+  @keyframes first-project {
+    from {
+      scale: 0.6;
+      translate: 320px 80px;
+      opacity: 0;
+    }
+
+    to {
+      scale: 0.9;
+      translate: 160px 0px;
+      opacity: 80%;
+    }
+  }
+
+  @keyframes second-project {
+    from {
+      scale: 0.7;
+      translate: 0px 80px;
+      opacity: 0;
+    }
+
+    to {
+      scale: 1;
+      translate: 0px 0px;
+      opacity: 100%;
+    }
+  }
+
+  @keyframes third-project {
+    from {
+      scale: 0.6;
+      translate: -320px 80px;
+      opacity: 0;
+    }
+
+    to {
+      scale: 0.9;
+      translate: -160px 0px;
+      opacity: 80%;
+    }
+  }
+
+  .projects__content__list__card {
+    animation-timeline: view();
+    // animation-fill-mode: forwards;
+    animation-timing-function: linear;
+    animation-range-start: entry;
+    animation-range-end: entry 240px;
+
+    &:nth-child(1) {
+      animation-name: first-project;
+    }
+
+    &:nth-child(2) {
+      animation-name: second-project;
+    }
+
+    &:nth-child(3) {
+      animation-name: third-project;
+    }
+  }
+
+  @include respond-to(desktop) {
+    .skills__content__headers__element {
+      animation-name: skills-headers-pop-up;
+      animation-timeline: view();
+      animation-fill-mode: forwards;
+      animation-timing-function: linear;
+
+      &:nth-child(1) {
+        animation-range-end: entry 288px;
+        animation-range-start: entry -96px;
+      }
+
+      &:nth-child(2) {
+        animation-range-end: entry 320px;
+        animation-range-start: entry -64px;
+      }
+
+      &:nth-child(3) {
+        animation-range-end: entry 352px;
+        animation-range-start: entry -32px;
+      }
+
+      &:nth-child(4) {
+        animation-range-end: entry 384px;
+        animation-range-start: entry 0px;
+      }
+    }
+  }
+
+  .--interactive-element-pop-up {
+    scale: 0;
+    animation-name: interactive-element-pop-up;
+    animation-timeline: view();
+    animation-range-start: entry 150px;
+    animation-range-end: entry 300px;
+    animation-fill-mode: forwards;
+  }
+
+  .--item-pop-up {
+    scale: 0;
+    animation-name: interactive-element-pop-up;
+    animation-timeline: view();
+    animation-range-start: entry 20px;
+    animation-range-end: entry 120px;
+    animation-fill-mode: forwards;
+  }
+
+  .story__content__timeline {
+    animation-name: story-timeline;
+    animation-timeline: view();
+    animation-range: entry;
+    animation-timing-function: ease-out;
+  }
+
+  .--background-fade-in {
+    translate: 0 80px;
+    animation-name: background-fade-in;
+    animation-timeline: view();
+    animation-range: entry;
+    animation-fill-mode: forwards;
+  }
+
+  .hero__background {
+    animation-name: hero-background-animation;
+    animation-timeline: view();
+    animation-range: exit;
+  }
+
+  .--animated {
+    animation-duration: 500ms;
+    animation-timing-function: ease-out;
+    animation-delay: 0ms;
+    animation-fill-mode: forwards;
+  }
+
+  .--text-fade-in {
+    translate: 0 240px;
+    opacity: 0;
+    animation-name: text-fade-in;
+  }
+
+  .--image-fade-in {
+    animation-name: image-fade-in;
+    opacity: 0;
+    scale: 0.8;
+  }
+
+  .--view-animated {
+    animation-timing-function: linear;
+    animation-timeline: view();
+  }
+
+  .--fade-out {
+    animation-name: fade-out;
+  }
+
+  .--exit-view {
+    animation-range: exit -200px;
+    transform-origin: top;
+  }
+
+  .--entry-text {
+    animation-range-start: entry 20px;
+    animation-range-end: entry 240px;
+    animation-fill-mode: forwards;
+  }
+
+  .--entry-item {
+    animation-range-start: entry 20px;
+    animation-range-end: entry 120px;
+    animation-fill-mode: forwards;
+  }
+
+  .--entry-picture {
+    animation-range-start: entry 20%;
+    animation-range-end: entry;
+    animation-fill-mode: forwards;
+  }
+}

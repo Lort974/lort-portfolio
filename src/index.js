@@ -29,7 +29,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+      <Theme accentColor="mint" grayColor="sand" radius="large" scaling="95%">
+        <App />
+      </Theme>
     </React.StrictMode>
   </Provider>
 );

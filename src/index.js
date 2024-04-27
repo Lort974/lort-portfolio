@@ -4,19 +4,24 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./style/style.css";
 
+//radix UI :
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+
+//Redux :
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
-import { setTheme } from "./actions/theme.action";
+import { setMode } from "./actions/settings.action";
 
 const store = configureStore({
   reducer: rootReducer,
   devtools: true,
 });
 
-const newTheme = "dark-theme";
+const newTheme = "dark-mode";
 
-store.dispatch(setTheme(newTheme));
+store.dispatch(setMode(newTheme));
 
 // document.querySelector("body").classList.add("dark-theme");
 

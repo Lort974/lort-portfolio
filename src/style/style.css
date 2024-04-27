@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap";
-body.light-theme {
+body.light-mode {
   --app-background: #f9fefd;
   --subtle-background: #f2fbf9;
   --item: #ddf9f2;
@@ -17,7 +17,7 @@ body.light-theme {
   --button-text: #16433c;
   --transparent-background: rgba(249 254 253 0.6);
 }
-body.dark-theme {
+body.dark-mode {
   --app-background: #0e1515;
   --subtle-background: #0f1b1b;
   --item: #092c2b;
@@ -258,8 +258,8 @@ body.dark-theme {
   }
 }
 .header {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
+  display: flex;
+  justify-content: flex-end;
   padding: 48px 64px 16px 64px;
   width: 100vw;
   box-sizing: border-box;
@@ -277,7 +277,6 @@ body.dark-theme {
     padding: 16px;
     left: 0;
     transform: unset;
-    grid-template-columns: 1fr 1fr;
   }
 }
 .header.header--locked {
@@ -316,10 +315,11 @@ body.dark-theme {
 .header .header__logo {
   font-family: "Space Mono";
   font-size: 40px;
+  margin-right: auto;
   transition: all 200ms linear;
 }
-.header .header__nav {
-  justify-self: end;
+.header .header__logo a {
+  text-decoration: none;
 }
 @media screen and (max-width: 768px) {
   .header .header__nav {
@@ -465,7 +465,7 @@ body.dark-theme {
 
 @media screen and (max-width: 768px) {
   .header:has(.header__nav__menu) .header__nav-background {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -479,6 +479,45 @@ body.dark-theme {
     opacity: 80%;
   }
 }
+.header:has(+ .links) .header__nav .header__nav__menu .header__nav__menu__element {
+  display: none;
+}
+
+.settings-modal {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: var(--subtle-background);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--static-border);
+  box-shadow: 0 0px 8px var(--interactive-border);
+  transition: all 200ms ease;
+}
+
+.settings-button {
+  background-color: transparent;
+  color: var(--high-text);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+.settings-button:hover {
+  background-color: transparent;
+}
+.settings-button svg {
+  width: 20px;
+  height: 20px;
+}
+@media screen and (max-width: 768px) {
+  .settings-button {
+    right: 16px;
+    top: 32px;
+  }
+}
+
 footer {
   margin-top: 100px;
   height: 200px;
@@ -1003,6 +1042,11 @@ footer {
   gap: 64px;
   position: relative;
 }
+@media screen and (max-width: 768px) {
+  .projects {
+    gap: 32px;
+  }
+}
 .projects .projects__background {
   position: absolute;
   height: 100%;
@@ -1016,6 +1060,11 @@ footer {
 }
 .projects .projects__title {
   text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .projects .projects__title {
+    text-align: left;
+  }
 }
 .projects .projects__content {
   position: relative;
@@ -1046,6 +1095,7 @@ footer {
 .projects .projects__content .projects__content__list .projects__content__list__card {
   display: grid;
   box-sizing: border-box;
+  gap: 16px;
   padding: 32px;
   border: 1px solid var(--static-border);
   border-radius: 8px;
@@ -1054,6 +1104,12 @@ footer {
   z-index: 2;
   filter: blur(0px);
   transition: all 300ms ease-out;
+}
+@media screen and (max-width: 768px) {
+  .projects .projects__content .projects__content__list .projects__content__list__card {
+    padding: 16px;
+    gap: 8px;
+  }
 }
 @media screen and (min-width: 769px) {
   .projects .projects__content .projects__content__list .projects__content__list__card {
@@ -1127,14 +1183,13 @@ footer {
   background-size: cover;
   border-radius: 16px;
 }
-.projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__title {
-  margin-top: 16px;
-}
-.projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__description {
-  margin-top: 16px;
+@media screen and (max-width: 768px) {
+  .projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__picture {
+    margin: 8px 0;
+  }
 }
 .projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__action {
-  margin-top: 32px;
+  margin-top: 16px;
 }
 
 .ReactModal__Overlay {
@@ -1159,6 +1214,14 @@ footer {
   gap: 32px;
   grid-template-areas: "modal-image modal-title modal-title" "modal-image modal-subtitle modal-date" "modal-image modal-description modal-description" "modal-image modal-type modal-technologies" "modal-image modal-functionalities modal-functionalities";
 }
+@media screen and (max-width: 768px) {
+  .project-modal {
+    padding: 16px;
+    overflow: scroll;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: "modal-title modal-title modal-title modal-close" "modal-image modal-image modal-image modal-image" "modal-subtitle modal-subtitle modal-date modal-date" "modal-description modal-description modal-description modal-description" "modal-type modal-type modal-technologies modal-technologies" "modal-functionalities modal-functionalities modal-functionalities modal-functionalities";
+  }
+}
 .project-modal * {
   transition: all 200ms ease-out;
   text-align: left;
@@ -1181,6 +1244,11 @@ footer {
   box-sizing: border-box;
   position: relative;
 }
+@media screen and (max-width: 768px) {
+  .project-modal > .--category {
+    padding: 40px 8px 8px 8px;
+  }
+}
 .project-modal > .--category .--category__name {
   position: absolute;
   bottom: 8px;
@@ -1190,6 +1258,12 @@ footer {
   font-weight: 700;
   opacity: 72%;
 }
+@media screen and (max-width: 768px) {
+  .project-modal > .--category .--category__name {
+    top: 8px;
+    left: 8px;
+  }
+}
 .project-modal .project-modal__picture {
   opacity: 0%;
   grid-area: modal-image;
@@ -1198,14 +1272,30 @@ footer {
   background-size: cover;
   border-radius: 16px;
 }
+@media screen and (max-width: 768px) {
+  .project-modal .project-modal__picture {
+    height: 240px;
+  }
+}
 .project-modal .project-modal__title {
   grid-area: modal-title;
+}
+@media screen and (max-width: 768px) {
+  .project-modal .project-modal__title {
+    display: grid;
+    gap: 16px;
+  }
 }
 .project-modal .project-modal__title .project-modal__link {
   font-family: "Montserrat";
   font-size: 16px;
   margin-left: 32px;
   font-weight: 400;
+}
+@media screen and (max-width: 768px) {
+  .project-modal .project-modal__title .project-modal__link {
+    margin: 0;
+  }
 }
 .project-modal .project-modal__subtitle {
   grid-area: modal-subtitle;
@@ -1248,22 +1338,45 @@ footer {
   height: 32px;
   width: 32px;
 }
+@media screen and (max-width: 768px) {
+  .project-modal .project-modal__close {
+    grid-area: modal-close;
+    position: sticky;
+    top: 0;
+    right: 0;
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--subtle-background);
+    justify-self: end;
+  }
+}
 
 .contact .contact__content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 64px;
 }
 @media screen and (max-width: 768px) {
   .contact .contact__content {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 32px;
   }
 }
 .contact .contact__content .contact__content__image {
-  flex: 1;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .contact .contact__content .contact__content__image {
+    width: 72%;
+    justify-self: center;
+  }
 }
 .contact .contact__content .contact__content__ways {
-  flex: 1;
+  width: 100%;
   display: flex;
   gap: 32px;
   flex-direction: column;
@@ -1274,10 +1387,12 @@ footer {
   display: flex;
   gap: 16px;
   flex-direction: column;
+  align-items: center;
 }
 .contact .contact__content .contact__content__ways .contact__content__ways__list .contact__content__ways__list__element {
   width: 100%;
   height: 48px;
+  max-width: unset;
 }
 .contact .contact__content .contact__content__ways .contact__content__ways__list .contact__content__ways__list__element a {
   display: inline-block;
@@ -1300,6 +1415,96 @@ footer {
 .contact .contact__content .contact__content__ways .contact__content__ways__list .contact__content__ways__list__element a svg:nth-child(3) {
   scale: 0.8;
   translate: -4px -4px;
+}
+
+.links {
+  padding: 160px 128px 0px 128px;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .links {
+    padding: 120px 16px;
+  }
+}
+.links .links__content {
+  display: flex;
+  gap: 64px;
+}
+@media screen and (max-width: 768px) {
+  .links .links__content {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+.links .links__content .links__content__image {
+  flex: 1;
+}
+.links .links__content .links__content__ways {
+  flex: 1;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  align-items: center;
+}
+.links .links__content .links__content__ways .links__content__ways__list {
+  box-sizing: border-box;
+  flex: 1;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.links .links__content .links__content__ways .links__content__ways__list .links__content__ways__list__element {
+  width: 100%;
+  height: 48px;
+  max-width: 600px;
+}
+.links .links__content .links__content__ways .links__content__ways__list .links__content__ways__list__element a {
+  display: inline-block;
+  background-color: var(--item);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  gap: 8px;
+  text-decoration: none;
+}
+.links .links__content .links__content__ways .links__content__ways__list .links__content__ways__list__element a:hover {
+  background-color: var(--item-hover);
+}
+.links .links__content .links__content__ways .links__content__ways__list .links__content__ways__list__element a:active {
+  background-color: var(--item-active);
+}
+.links .links__content .links__content__ways .links__content__ways__list .links__content__ways__list__element a svg:nth-child(3) {
+  scale: 0.8;
+  translate: -4px -4px;
+}
+
+.settings-modal {
+  width: 240px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+.settings-modal .settings-modal__content .settings-modal__content__element {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 3fr 1fr 1fr;
+}
+.settings-modal .settings-modal__content .settings-modal__content__element .settings-modal__content__element__name {
+  justify-self: start;
+}
+.settings-modal .settings-modal__content .settings-modal__content__element .setting-option {
+  height: 24px;
+  width: 24px;
+  color: var(--item-active);
+  justify-self: center;
+}
+.settings-modal .settings-modal__content .settings-modal__content__element .setting-option.--current {
+  color: var(--high-text);
 }
 
 a {
@@ -1389,7 +1594,7 @@ section h1 {
 
 button {
   height: 48px;
-  padding: 0 16px;
+  padding: 0 24px;
   font-family: "Montserrat";
   font-size: 16px;
   background-color: var(--action);
@@ -1399,6 +1604,10 @@ button {
   cursor: pointer;
   font-weight: 500;
   transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 @media screen and (max-width: 768px) {
   button {

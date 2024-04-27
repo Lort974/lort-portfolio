@@ -1,5 +1,5 @@
 body {
-  &.light-theme {
+  &.light-mode {
     --app-background: #f9fefd;
     --subtle-background: #f2fbf9;
     --item: #ddf9f2;
@@ -16,7 +16,7 @@ body {
     --transparent-background: rgba(249 254 253 0.6);
   }
 
-  &.dark-theme {
+  &.dark-mode {
     --app-background: #0e1515;
     --subtle-background: #0f1b1b;
     --item: #092c2b;

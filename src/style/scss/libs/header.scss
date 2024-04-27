@@ -4,8 +4,8 @@
 @import "https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap";
 
 .header {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
+  display: flex;
+  justify-content: flex-end;
   padding: 48px 64px 16px 64px;
   width: 100vw;
   box-sizing: border-box;
@@ -22,7 +22,6 @@
     padding: 16px;
     left: 0;
     transform: unset;
-    grid-template-columns: 1fr 1fr;
   }
 
   &.header--locked {
@@ -64,12 +63,15 @@
   .header__logo {
     font-family: "Space Mono";
     font-size: $title-one-desktop;
+    margin-right: auto;
     transition: all 200ms linear;
+
+    a {
+      text-decoration: none;
+    }
   }
 
   .header__nav {
-    justify-self: end;
-
     @include respond-to(mobile) {
       position: relative;
       width: 100%;
@@ -225,7 +227,7 @@
 
 @include respond-to(mobile) {
   .header:has(.header__nav__menu) .header__nav-background {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -238,5 +240,49 @@
 
   .header:has(.header__nav__menu.--open) .header__nav-background {
     opacity: 80%;
+  }
+}
+
+//cacher le nav sur la page links :
+.header:has(+ .links)
+  .header__nav
+  .header__nav__menu
+  .header__nav__menu__element {
+  display: none;
+}
+
+.settings-modal {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  background-color: var(--subtle-background);
+  padding: 32px;
+  border-radius: 16px;
+  border: 1px solid var(--static-border);
+  box-shadow: 0 0px 8px var(--interactive-border);
+  transition: all 200ms ease;
+}
+
+.settings-button {
+  background-color: transparent;
+  color: var(--high-text);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: transparent;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @include respond-to(mobile) {
+    right: 16px;
+    top: 32px;
   }
 }

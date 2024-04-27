@@ -1,46 +1,50 @@
-.contact {
-  .contact__content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+.links {
+  padding: 160px 128px 0px 128px;
+  text-align: center;
+
+  @include respond-to(mobile) {
+    padding: 120px 16px;
+  }
+
+  .links__content {
+    display: flex;
     gap: 64px;
 
     @include respond-to(mobile) {
-      grid-template-columns: 1fr;
+      flex-direction: column;
       gap: 32px;
     }
 
-    .contact__content__image {
-      width: 100%;
-
-      @include respond-to(mobile) {
-        width: 72%;
-        justify-self: center;
-      }
+    .links__content__image {
+      flex: 1;
     }
 
-    .contact__content__ways {
-      width: 100%;
+    .links__content__ways {
+      flex: 1;
       display: flex;
       gap: 32px;
       flex-direction: column;
-      .contact__content__ways__title {
+      align-items: center;
+
+      .links__content__ways__title {
       }
 
-      .contact__content__ways__description {
+      .links__content__ways__description {
       }
 
-      .contact__content__ways__list {
+      .links__content__ways__list {
         box-sizing: border-box;
         flex: 1;
         display: flex;
         gap: 16px;
         flex-direction: column;
         align-items: center;
+        width: 100%;
 
-        .contact__content__ways__list__element {
+        .links__content__ways__list__element {
           width: 100%;
           height: 48px;
-          max-width: unset;
+          max-width: 600px;
 
           a {
             display: inline-block;

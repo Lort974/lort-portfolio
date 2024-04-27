@@ -34,7 +34,7 @@ const ProjectModal = ({ projectId, handleCloseModal, modalDimensions }) => {
     }, 200);
 
     clearTimeout();
-  }, []);
+  }, [modalDimensions]);
 
   return (
     <>

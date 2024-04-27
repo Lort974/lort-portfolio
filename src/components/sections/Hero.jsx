@@ -1,4 +1,5 @@
 import heroBackground from "../../assets/images/hero-background.jpg";
+import { ArrowDownIcon } from "@radix-ui/react-icons";
 
 const Hero = () => {
   return (
@@ -13,6 +14,7 @@ const Hero = () => {
             Let me lead you or jump anywhere, anytime.
           </p>
           <button className="hero__content__action">
+            <ArrowDownIcon />
             <a href="#my-story">Start here</a>
           </button>
         </div>

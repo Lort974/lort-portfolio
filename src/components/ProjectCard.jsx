@@ -2,6 +2,7 @@ import { useState } from "react";
 import Modal from "react-modal";
 import projects from "../data/projects";
 import ProjectModal from "../components/ProjectModal";
+import { EyeOpenIcon } from "@radix-ui/react-icons";
 
 // Configuration de l'élément racine pour le modal
 Modal.setAppElement("#root");
@@ -13,7 +14,9 @@ const ProjectCard = () => {
   const [modalDimensions, setModalDimensions] = useState(null);
 
   const openModal = (e, projectId) => {
-    const card = e.target.parentNode;
+    const card = document.querySelector(
+      `.projects__content__list__card[data-id='${projectId}']`
+    );
     card.classList.add("--opening");
     setTimeout(() => {
       setModalIsOpen(true);
@@ -46,17 +49,21 @@ const ProjectCard = () => {
     <>
       {projects.map((project) => {
         return (
-          <div className="projects__content__list__card" key={project.id}>
-            <div
-              className="projects__content__list__card__picture"
-              style={{ backgroundImage: `url(${project.picture})` }}
-            ></div>
+          <div
+            className="projects__content__list__card"
+            key={project.id}
+            data-id={project.id}
+          >
             <h2 className="projects__content__list__card__title">
               {project.title}
             </h2>
             <h4 className="projects__content__list__card__subtitle">
               {project.subTitle}
             </h4>
+            <div
+              className="projects__content__list__card__picture"
+              style={{ backgroundImage: `url(${project.picture})` }}
+            ></div>
             <p className="projects__content__list__card__description">
               {project.description}
             </p>
@@ -66,7 +73,8 @@ const ProjectCard = () => {
                 openModal(e, project.id);
               }}
             >
-              See details
+              <EyeOpenIcon />
+              <span>See details</span>
             </button>
           </div>
         );

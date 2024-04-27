@@ -4,6 +4,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
+import Links from "../pages/Links";
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,10 @@ const router = createBrowserRouter([
         <Footer />
       </>
     ),
-    children: [{ path: "", element: <Home /> }],
+    children: [
+      { path: "", element: <Home /> },
+      { path: "links", element: <Links /> },
+    ],
   },
 ]);
 

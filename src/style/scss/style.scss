@@ -11,6 +11,8 @@
 @import "./libs/skills.scss";
 @import "./libs/projects.scss";
 @import "./libs/contact.scss";
+@import "./libs/links.scss";
+@import "./libs/settings.scss";
 
 a {
   color: unset;
@@ -95,7 +97,7 @@ section {
 
 button {
   height: 48px;
-  padding: 0 16px;
+  padding: 0 24px;
   font-family: $font-main;
   font-size: $normal-font-desktop;
   background-color: var(--action);
@@ -106,6 +108,10 @@ button {
   font-weight: 500;
   // box-shadow: 0 0 8px var(--low-text);
   transition: all 200ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 
   @include respond-to(mobile) {
     font-size: $normal-font-mobile;

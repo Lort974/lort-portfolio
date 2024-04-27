@@ -10,6 +10,7 @@ const Story = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [timelineLength, setTimelineLength] = useState(null);
   const [timelineWidth, setTimelineWidth] = useState(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const handleSlide = (direction) => {
     setCurrentSlide((currentSlide) => currentSlide + direction);
@@ -29,6 +30,20 @@ const Story = () => {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+      setCurrentSlide(1);
+      setSliding("0px");
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  useEffect(() => {
     setTimelineLength(storyTimeline.current.childNodes.length);
 
     //calculer la largeur d'une carte
@@ -36,7 +51,7 @@ const Story = () => {
     const timelineWidth = dimensions.width;
     const cardWidth = (timelineWidth - 4 * 64) / 5;
     setTimelineWidth(cardWidth);
-  }, []);
+  }, [windowWidth]);
 
   return (
     <>

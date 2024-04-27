@@ -1,0 +1,28 @@
+.settings-modal {
+  width: 240px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  .settings-modal__title {
+  }
+  .settings-modal__content {
+    .settings-modal__content__element {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: 3fr 1fr 1fr;
+      .settings-modal__content__element__name {
+        justify-self: start;
+      }
+      .setting-option {
+        height: 24px;
+        width: 24px;
+        color: var(--item-active);
+        justify-self: center;
+
+        &.--current {
+          color: var(--high-text);
+        }
+      }
+    }
+  }
+}

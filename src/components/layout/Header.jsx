@@ -1,11 +1,18 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import OpenMenu from "../OpenMenu";
-import { DotsVerticalIcon, Cross1Icon, GearIcon } from "@radix-ui/react-icons";
+import {
+  DotsVerticalIcon,
+  Cross1Icon,
+  MixerHorizontalIcon,
+} from "@radix-ui/react-icons";
 import { NavLink } from "react-router-dom";
 import SettingsModal from "../SettingModal";
 import Modal from "react-modal";
+import { useTranslation } from "react-i18next";
 
 const Header = () => {
+  //traduction :
+  const { t } = useTranslation("header");
   //Gérer la réduction du header au scroll
   const header = useRef(null);
   const navMenu = useRef(null);
@@ -38,7 +45,6 @@ const Header = () => {
         setTimeout(() => {
           navBackground.current.style.display = "none";
         }, 200);
-        console.log("fermeture");
       });
     });
     navBackground.current.addEventListener("click", () => {
@@ -47,7 +53,6 @@ const Header = () => {
       setTimeout(() => {
         navBackground.current.style.display = "none";
       }, 200);
-      console.log("fermeture");
     });
   }, []);
 
@@ -67,19 +72,41 @@ const Header = () => {
         setIsMenuOpen("--open");
         setOpenButton(<Cross1Icon />);
       }, 1);
-      console.log("ouverture");
     } else {
       setIsMenuOpen("--close");
       setOpenButton(<DotsVerticalIcon />);
       setTimeout(() => {
         navBackground.current.style.display = "none";
       }, 200);
-      console.log("fermeture");
     }
   };
 
   //Gérer la modale des paramètres
   const [settingsIsOpen, setSettingsIsOpen] = useState(false);
+  const [settingsPosition, setSettingsPosition] = useState(null);
+  const settingsButton = useRef(null);
+
+  useEffect(() => {
+    const updatePosition = () => {
+      if (settingsButton.current) {
+        const rect = settingsButton.current.getBoundingClientRect();
+        setSettingsPosition({
+          left: rect.left + "px",
+          top: rect.top + "px",
+        });
+      }
+    };
+
+    window.addEventListener("resize", updatePosition);
+
+    // Appel initial pour définir la position
+    updatePosition();
+
+    // Nettoyage lors du démontage du composant
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, []);
 
   const openSettings = () => {
     setSettingsIsOpen(true);
@@ -104,16 +131,16 @@ const Header = () => {
         <nav className="header__nav">
           <ul className={`header__nav__menu ${isMenuOpen}`} ref={navMenu}>
             <li className="header__nav__menu__element">
-              <a href="#my-story">My story</a>
+              <a href="#my-story">{t("story")}</a>
             </li>
             <li className="header__nav__menu__element">
-              <a href="#my-skills">My skills</a>
+              <a href="#my-skills">{t("skills")}</a>
             </li>
             <li className="header__nav__menu__element">
-              <a href="#my-projects">My projects</a>
+              <a href="#my-projects">{t("projects")}</a>
             </li>
             <li className="header__nav__menu__element">
-              <a href="#contact-me">Contact me</a>
+              <a href="#contact-me">{t("contact")}</a>
             </li>
           </ul>
           <OpenMenu openButton={openButton} handleOpenMenu={handleOpenMenu} />
@@ -123,8 +150,9 @@ const Header = () => {
           onClick={(e) => {
             openSettings(e);
           }}
+          ref={settingsButton}
         >
-          <GearIcon />
+          <MixerHorizontalIcon />
         </button>
         <div className="header__nav-background" ref={navBackground}></div>
       </header>
@@ -134,7 +162,10 @@ const Header = () => {
         contentLabel="Settings menu"
         className="settings-modal"
       >
-        <SettingsModal handleCloseSettings={handleCloseSettings} />
+        <SettingsModal
+          handleCloseSettings={handleCloseSettings}
+          settingsPosition={settingsPosition}
+        />
       </Modal>
     </>
   );

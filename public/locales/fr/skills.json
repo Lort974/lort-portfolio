@@ -1,0 +1,15 @@
+{
+  "title": "J'adore créer des applications qui sont...",
+  "interactive": "interactives",
+  "gorgeous": "magnifiques",
+  "fluid": "fluides",
+  "connected": "connectées",
+  "interactiveSubtitle": "Des applications interactives avec React",
+  "interactiveDescription": "React était la pierre angulaire des 14 projets professionnels que j'ai réalisés cette dernière année. J'apprécie particulièrement cet outil pour sa gestion efficiente des interactions de l'utilisateur.",
+  "gorgeousSubtitle": "Des applications magnifiques avec Sass",
+  "gorgeousDescription": "Sass est devenu un élément essentiel de ma boîte à outils de développement au cours de la dernière année, m'accompagnant dans mes projets professionnels. J'aime particulièrement ce préprocesseur pour sa capacité à organiser et structurer le CSS de manière efficace et modulaire.",
+  "fluidSubtitle": "Des applications fluides avec Redux",
+  "fluidDescription": "Redux a joué un rôle clé dans la structuration de mes projets professionnels cette année. Je me suis habitué à utiliser cet outil pour sa capacité à gérer efficacement des états complexes et à simplifier l'organisation des applications React. Redux fournit une source unique de vérité sur l'état des applications, ce qui facilite le débogage et la prévision du comportement des applications.",
+  "connectedSubtitle": "Des applications connectées avec Express",
+  "connectedDescription": "Express.js, souvent simplement appelé Express, a été un pilier de mes projets professionnels tout au long de l'année écoulée. J'ai pris l'habitude d'utiliser ce framework pour sa capacité à faciliter et accélérer le développement de mes applications web. Avec Express, je peux configurer des routes et des middlewares de manière intuitive, ce qui me permet de gérer les requêtes et réponses HTTP avec une grande efficacité."
+}

@@ -2,8 +2,10 @@ import StoryCard from "../StoryCard";
 import storyBackground from "../../assets/images/story-background.jpg";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const Story = () => {
+  const { t } = useTranslation("story");
   // Gérer le défilement des cartes
   const storyTimeline = useRef("storyTimeline");
   const [sliding, setSliding] = useState("0px");
@@ -61,7 +63,7 @@ const Story = () => {
           style={{ backgroundImage: `url(${storyBackground})` }}
         ></div>
         <h1 className="story__title --view-animated --text-fade-in --entry-text">
-          My path to development
+          {t("title")}
         </h1>
         <div className="story__content">
           <div

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import contactIllustration from "../../assets/images/contact-illustration.png";
 import {
   GitHubLogoIcon,
@@ -8,34 +9,30 @@ import {
 } from "@radix-ui/react-icons";
 
 const Contact = () => {
+  const { t } = useTranslation("contact");
   return (
     <>
       <section className="contact" id="contact-me">
         <div className="contact__content">
-          <img
-            className="contact__content__image --view-animated --text-fade-in --entry-picture"
-            src={contactIllustration}
-            alt="Illustration de mes contacts"
-          />
+          <div className="contact__content__image --view-animated --text-fade-in --entry-picture">
+            <img src={contactIllustration} alt="Illustration de mes contacts" />
+          </div>
           <div className="contact__content__ways">
-            <h1 className="contact__content__ways__title">
-              I'd be happy to talk
-            </h1>
+            <h1 className="contact__content__ways__title">{t("title")}</h1>
             <p className="contact__content__ways__description">
-              Contact forms are good but it will be easier and quicker for you
-              to click below :
+              {t("description")}
             </p>
             <div className="contact__content__ways__list">
               <p className="contact__content__ways__list__element --item-pop-up">
                 <a href="mailto:lort@lort.dev">
                   <EnvelopeClosedIcon />
-                  <span>E-mail me</span>
+                  <span>{t("mail")}</span>
                 </a>
               </p>
               <p className="contact__content__ways__list__element --item-pop-up">
                 <a href="tel:+336000000000">
                   <MobileIcon />
-                  <span>Call me</span>
+                  <span>{t("phone")}</span>
                 </a>
               </p>
               <p className="contact__content__ways__list__element --item-pop-up">

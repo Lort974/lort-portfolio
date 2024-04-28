@@ -1,9 +1,11 @@
 import { useEffect } from "react";
-import projects from "../data/projects";
+// import projects from "../data/projects";
 import { Cross2Icon, OpenInNewWindowIcon } from "@radix-ui/react-icons";
+import { useTranslation } from "react-i18next";
 
-const ProjectModal = ({ projectId, handleCloseModal, modalDimensions }) => {
-  const project = projects.find((project) => project.id === projectId);
+const ProjectModal = ({ project, handleCloseModal, modalDimensions }) => {
+  //traduction:
+  const { t } = useTranslation("projects");
 
   useEffect(() => {
     const modal = document.querySelector(".project-modal");
@@ -45,25 +47,25 @@ const ProjectModal = ({ projectId, handleCloseModal, modalDimensions }) => {
       <h2 className="project-modal__title --category">
         <span>{project.title}</span>
         <a className="project-modal__link" href={project.demo}>
-          View live <OpenInNewWindowIcon />
+          {t("externalLink")} <OpenInNewWindowIcon />
         </a>
-        <span className="--category__name">Title</span>
+        <span className="--category__name">{t("pTitle")}</span>
       </h2>
       <h4 className="project-modal__subtitle --category">
         {project.subTitle}
-        <span className="--category__name">Objective</span>
+        <span className="--category__name">{t("pObjective")}</span>
       </h4>
       <p className="project-modal__type --category">
         {project.type}
-        <span className="--category__name">Type</span>
+        <span className="--category__name">{t("pType")}</span>
       </p>
       <p className="project-modal__description --category">
         {project.description}
-        <span className="--category__name">Description</span>
+        <span className="--category__name">{t("pDescription")}</span>
       </p>
       <h4 className="project-modal__date --category">
         {project.year}
-        <span className="--category__name">Date</span>
+        <span className="--category__name">{t("pDate")}</span>
       </h4>
       <div className="project-modal__technologies --category">
         {project.technologies.map((techno) => {
@@ -74,11 +76,11 @@ const ProjectModal = ({ projectId, handleCloseModal, modalDimensions }) => {
             </div>
           );
         })}
-        <span className="--category__name">Technologies</span>
+        <span className="--category__name">{t("pTechnologies")}</span>
       </div>
       <p className="project-modal__functionalities --category">
         {project.functions}
-        <span className="--category__name">Functionalities</span>
+        <span className="--category__name">{t("pFunctionnalities")}</span>
       </p>
       <div
         className="project-modal__close"
@@ -86,7 +88,7 @@ const ProjectModal = ({ projectId, handleCloseModal, modalDimensions }) => {
           handleCloseModal();
         }}
       >
-        <Cross2Icon />
+        <Cross2Icon className="close-icon" />
       </div>
     </>
   );

@@ -4,24 +4,27 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "./style/style.css";
 
-//radix UI :
-import "@radix-ui/themes/styles.css";
-import { Theme } from "@radix-ui/themes";
-
 //Redux :
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import rootReducer from "./reducers";
-import { setMode } from "./actions/settings.action";
+import { setLanguage, setMode, setTheme } from "./actions/settings.action";
+
+// import i18n (needs to be bundled ;))
+import "./i18n";
 
 const store = configureStore({
   reducer: rootReducer,
   devtools: true,
 });
 
-const newTheme = "dark-mode";
+const newMode = "dark";
+const newTheme = "mint";
+const newLanguage = "en";
 
-store.dispatch(setMode(newTheme));
+store.dispatch(setMode(newMode));
+store.dispatch(setTheme(newTheme));
+store.dispatch(setLanguage(newLanguage));
 
 // document.querySelector("body").classList.add("dark-theme");
 

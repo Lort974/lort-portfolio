@@ -2,8 +2,12 @@ import reactLogo from "../../assets/images/logo-react.png";
 import reduxLogo from "../../assets/images/logo-redux.png";
 import sassLogo from "../../assets/images/logo-sass.png";
 import expressLogo from "../../assets/images/logo-express.png";
+import { useTranslation } from "react-i18next";
 
 const Skills = () => {
+  //traduction :
+  const { t } = useTranslation("skills");
+
   const handleClick = (e) => {
     const type = e.currentTarget.getAttribute("data-type");
     const headers = document.querySelectorAll(
@@ -45,7 +49,7 @@ const Skills = () => {
     <>
       <section className="skills" id="my-skills">
         <h1 className="skills__title --view-animated --text-fade-in --entry-text">
-          I love creating apps that are...
+          {t("title")}
         </h1>
         <div className="skills__content">
           <div className="skills__content__headers">
@@ -57,7 +61,7 @@ const Skills = () => {
               data-type="react"
             >
               <img src={reactLogo} alt="Logo de React" />
-              <span>interactive</span>
+              <span>{t("interactive")}</span>
             </div>
             <div
               className="skills__content__headers__element --covered"
@@ -67,7 +71,7 @@ const Skills = () => {
               data-type="sass"
             >
               <img src={sassLogo} alt="Logo de Sass" />
-              <span>gorgeous</span>
+              <span>{t("gorgeous")}</span>
             </div>
             <div
               className="skills__content__headers__element --covered"
@@ -77,7 +81,7 @@ const Skills = () => {
               data-type="redux"
             >
               <img src={reduxLogo} alt="Logo de Redux" />
-              <span>fluid</span>
+              <span>{t("fluid")}</span>
             </div>
             <div
               className="skills__content__headers__element --covered"
@@ -87,7 +91,7 @@ const Skills = () => {
               data-type="express"
             >
               <img src={expressLogo} alt="Logo de Express" />
-              <span>connected</span>
+              <span>{t("connected")}</span>
             </div>
           </div>
           <div className="skills__content__descriptions">
@@ -101,13 +105,10 @@ const Skills = () => {
                 className="skills__content__descriptions__element__img"
               />
               <h2 className="skills__content__descriptions__element__title">
-                Interactive apps with React
+                {t("interactiveSubtitle")}
               </h2>
               <div className="skills__content__descriptions__element__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-                cupiditate ex? Vero rerum beatae autem quibusdam ex tempore
-                deserunt, sed rem, at odit odio nulla! Praesentium ex odio
-                laudantium ea!
+                {t("interactiveDescription")}
               </div>
             </div>
             <div
@@ -120,13 +121,10 @@ const Skills = () => {
                 className="skills__content__descriptions__element__img"
               />
               <h2 className="skills__content__descriptions__element__title">
-                Gorgeous apps with Sass
+                {t("gorgeousSubtitle")}
               </h2>
               <div className="skills__content__descriptions__element__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-                cupiditate ex? Vero rerum beatae autem quibusdam ex tempore
-                deserunt, sed rem, at odit odio nulla! Praesentium ex odio
-                laudantium ea!
+                {t("gorgeousDescription")}
               </div>
             </div>
             <div
@@ -139,13 +137,10 @@ const Skills = () => {
                 className="skills__content__descriptions__element__img"
               />
               <h2 className="skills__content__descriptions__element__title">
-                Fluid apps with Redux
+                {t("fluidSubtitle")}
               </h2>
               <div className="skills__content__descriptions__element__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-                cupiditate ex? Vero rerum beatae autem quibusdam ex tempore
-                deserunt, sed rem, at odit odio nulla! Praesentium ex odio
-                laudantium ea!
+                {t("fluidDescription")}
               </div>
             </div>
             <div
@@ -158,13 +153,10 @@ const Skills = () => {
                 className="skills__content__descriptions__element__img"
               />
               <h2 className="skills__content__descriptions__element__title">
-                Connected apps with Express
+                {t("connectedSubtitle")}
               </h2>
               <div className="skills__content__descriptions__element__text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed,
-                cupiditate ex? Vero rerum beatae autem quibusdam ex tempore
-                deserunt, sed rem, at odit odio nulla! Praesentium ex odio
-                laudantium ea!
+                {t("connectedDescription")}
               </div>
             </div>
           </div>

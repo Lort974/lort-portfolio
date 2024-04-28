@@ -1,28 +1,170 @@
 .settings-modal {
-  width: 240px;
+  width: 288px;
+  transform: translate(-216px, 48px);
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
+  gap: 32px;
+  position: fixed;
+  background-color: var(--subtle-background);
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid var(--static-border);
+  box-shadow: 0 0px 8px var(--interactive-border);
+  transition: all 200ms ease;
+
+  &::before {
+    content: "";
+    background-color: var(--subtle-background);
+    height: 16px;
+    width: 16px;
+    transform: rotate(45deg);
+    position: absolute;
+    right: 46px;
+    top: -9px;
+    border: 1px solid var(--static-border);
+    box-shadow: 0 0px 8px var(--interactive-border);
+  }
+
+  &::after {
+    content: "";
+    background-color: var(--subtle-background);
+    height: 24px;
+    width: 48px;
+    position: absolute;
+    right: 32px;
+    top: 0px;
+  }
   .settings-modal__title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
   .settings-modal__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
     .settings-modal__content__element {
       display: grid;
       gap: 8px;
-      grid-template-columns: 3fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
       .settings-modal__content__element__name {
         justify-self: start;
+        padding-top: 8px;
+      }
+      .settings-modal__content__element__options {
+        display: grid;
+        gap: 8px;
+        grid-template-columns: repeat(3, 1fr);
+        width: 136px;
       }
       .setting-option {
-        height: 24px;
-        width: 24px;
-        color: var(--item-active);
+        background-color: var(--item);
+        border: 1px solid transparent;
+        padding: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        box-shadow: 0 0 0px var(--active-border);
+
+        &.--ruby {
+          color: #fff;
+          background-color: #e54666;
+
+          &:hover {
+            background-color: #ec5a72;
+          }
+        }
+
+        &.--indigo {
+          color: #fff;
+          background-color: #3e63dd;
+
+          &:hover {
+            background-color: #5472e4;
+          }
+        }
+
+        &.--jade {
+          color: #fff;
+          background-color: #29a383;
+
+          &:hover {
+            background-color: #27b08b;
+          }
+        }
+
+        &.--mint {
+          color: #000;
+          background-color: #86ead4;
+
+          &:hover {
+            background-color: #a8f5e5;
+          }
+        }
+
+        &.--amber {
+          color: #000;
+          background-color: #ffc53d;
+
+          &:hover {
+            background-color: #ffd60a;
+          }
+        }
+
+        &.--olive {
+          color: #000;
+          background-color: #687066;
+
+          &:hover {
+            background-color: #767d74;
+          }
+        }
+
+        svg,
+        span {
+          height: 24px;
+          width: 24px;
+          color: var(--item-active);
+        }
         justify-self: center;
 
         &.--current {
-          color: var(--high-text);
+          border: 1px solid var(--active-border);
+          box-shadow: 0 0 16px var(--active-border);
+          background-color: var(--action-hover);
+
+          &:hover,
+          &:active {
+            background-color: var(--action);
+          }
+
+          svg {
+            color: var(--button-text);
+          }
+        }
+
+        &:hover {
+          background-color: var(--item-hover);
+
+          svg {
+            color: var(--button-text);
+          }
+        }
+
+        &:active {
+          background-color: var(--item-active);
         }
       }
     }
+  }
+}
+
+body:has(.header--locked) .settings-modal {
+  transform: translate(-216px, 8px);
+
+  @include respond-to(mobile) {
+    transform: translate(-216px, 34px);
   }
 }

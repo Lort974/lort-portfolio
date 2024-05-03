@@ -1,9 +1,21 @@
 import { useEffect } from "react";
 // import projects from "../data/projects";
-import { Cross2Icon, OpenInNewWindowIcon } from "@radix-ui/react-icons";
+import {
+  Cross2Icon,
+  OpenInNewWindowIcon,
+  ChevronRightIcon,
+  ChevronLeftIcon,
+} from "@radix-ui/react-icons";
 import { useTranslation } from "react-i18next";
 
-const ProjectModal = ({ project, handleCloseModal, modalDimensions }) => {
+const ProjectModal = ({
+  project,
+  handleCloseModal,
+  modalDimensions,
+  projectsLength,
+  setSelectedProject,
+  selectedProject,
+}) => {
   //traduction:
   const { t } = useTranslation("projects");
 
@@ -38,17 +50,54 @@ const ProjectModal = ({ project, handleCloseModal, modalDimensions }) => {
     clearTimeout();
   }, [modalDimensions]);
 
+  const handleNavigation = (direction) => {
+    const modal = document.querySelector(".project-modal");
+    modal.childNodes.forEach((child) => {
+      child.style.filter = "blur(4px)";
+      child.style.opacity = "80%";
+    });
+    setTimeout(() => {
+      setSelectedProject((selectedProject) => selectedProject + direction);
+      modal.childNodes.forEach((child) => {
+        child.style.filter = "blur(0px)";
+        child.style.opacity = "100%";
+      });
+    }, 200);
+  };
+
   return (
     <>
+      {project.id > 1 ? (
+        <button
+          className="project-modal__navigation --previous"
+          onClick={() => handleNavigation(-1)}
+        >
+          <ChevronLeftIcon />
+        </button>
+      ) : null}
+      {project.id < projectsLength ? (
+        <button
+          className="project-modal__navigation --next"
+          onClick={() => handleNavigation(1)}
+        >
+          <ChevronRightIcon />
+        </button>
+      ) : null}
       <div
         className="project-modal__picture"
         style={{ backgroundImage: `url(${project.picture})` }}
       ></div>
       <h2 className="project-modal__title --category">
         <span>{project.title}</span>
-        <a className="project-modal__link" href={project.demo}>
-          {t("externalLink")} <OpenInNewWindowIcon />
-        </a>
+        {project.demo === "#" ? null : (
+          <a
+            className="project-modal__link"
+            href={project.demo}
+            target="new-tab"
+          >
+            {t("externalLink")} <OpenInNewWindowIcon />
+          </a>
+        )}
         <span className="--category__name">{t("pTitle")}</span>
       </h2>
       <h4 className="project-modal__subtitle --category">

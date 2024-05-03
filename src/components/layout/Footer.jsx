@@ -5,7 +5,9 @@ const Footer = () => {
 
   return (
     <>
-      <footer>{t("copyright")}</footer>
+      <footer>
+        <p>{t("copyright")}</p>
+      </footer>
     </>
   );
 };

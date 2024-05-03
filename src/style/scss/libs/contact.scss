@@ -13,6 +13,16 @@
       position: relative;
       align-self: start;
 
+      @include respond-to(mobile) {
+        width: 72%;
+        justify-self: center;
+
+        img {
+          width: 100%;
+          margin: auto;
+        }
+      }
+
       &::after {
         content: "";
         background-color: var(--action);
@@ -39,11 +49,6 @@
 
       img {
         width: 100%;
-
-        @include respond-to(mobile) {
-          width: 72%;
-          justify-self: center;
-        }
       }
     }
 

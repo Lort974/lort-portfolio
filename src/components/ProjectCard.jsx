@@ -1,15 +1,21 @@
 import { useState } from "react";
 import Modal from "react-modal";
-import projects from "../data/projects";
 import ProjectModal from "../components/ProjectModal";
 import { EyeOpenIcon } from "@radix-ui/react-icons";
 import { useTranslation } from "react-i18next";
 import goutanoo from "../assets/images/goutanoo.jpg";
+import datatable from "../assets/images/datatable.jpg";
+import doudou from "../assets/images/doudou.jpg";
 import html from "../assets/images/html.png";
 import css from "../assets/images/css.png";
 import mysql from "../assets/images/mysql.png";
 import php from "../assets/images/php.png";
 import js from "../assets/images/js.png";
+import react from "../assets/images/logo-react.png";
+import express from "../assets/images/logo-express.png";
+import mongodb from "../assets/images/logo-mongodb.png";
+import sass from "../assets/images/logo-sass.png";
+import redux from "../assets/images/logo-redux.png";
 
 // Configuration de l'élément racine pour le modal
 Modal.setAppElement("#root");
@@ -21,18 +27,18 @@ const ProjectCard = () => {
   const projects = [
     {
       id: 1,
-      title: "Goutanoo",
+      title: "Data table",
       subTitle: t("p1Subtitle"),
       description: t("p1Description"),
-      picture: goutanoo,
-      year: "2018-2022",
+      picture: datatable,
+      year: "2024",
       functions: t("p1Functions"),
       technologies: [
-        { name: "PHP", img: php },
-        { name: "MySql", img: mysql },
-        { name: "JS", img: js },
-        { name: "HTML", img: html },
-        { name: "CSS", img: css },
+        { name: "React", img: react },
+        { name: "Express", img: express },
+        { name: "MongoDB", img: mongodb },
+        { name: "SASS", img: sass },
+        { name: "Redux", img: redux },
       ],
       demo: "#",
       type: t("p1Type"),
@@ -52,23 +58,23 @@ const ProjectCard = () => {
         { name: "HTML", img: html },
         { name: "CSS", img: css },
       ],
-      demo: "#",
+      demo: "/projects/goutanoo",
       type: t("p2Type"),
     },
     {
       id: 3,
-      title: "Goutanoo",
+      title: "My first client",
       subTitle: t("p3Subtitle"),
       description: t("p3Description"),
-      picture: goutanoo,
-      year: "2018-2022",
+      picture: doudou,
+      year: "2024",
       functions: t("p3Functions"),
       technologies: [
-        { name: "PHP", img: php },
-        { name: "MySql", img: mysql },
-        { name: "JS", img: js },
-        { name: "HTML", img: html },
-        { name: "CSS", img: css },
+        { name: "React", img: react },
+        { name: "Express", img: express },
+        { name: "MongoDB", img: mongodb },
+        { name: "SASS", img: sass },
+        { name: "Redux", img: redux },
       ],
       demo: "#",
       type: t("p3Type"),
@@ -121,16 +127,17 @@ const ProjectCard = () => {
             key={project.id}
             data-id={project.id}
           >
+            <img
+              className="projects__content__list__card__picture"
+              src={project.picture}
+              alt="Illustration du projet"
+            />
             <h2 className="projects__content__list__card__title">
               {project.title}
             </h2>
             <h4 className="projects__content__list__card__subtitle">
               {project.subTitle}
             </h4>
-            <div
-              className="projects__content__list__card__picture"
-              style={{ backgroundImage: `url(${project.picture})` }}
-            ></div>
             <p className="projects__content__list__card__description">
               {project.description}
             </p>
@@ -156,6 +163,9 @@ const ProjectCard = () => {
           project={projects.find((project) => project.id === selectedProject)}
           handleCloseModal={handleCloseModal}
           modalDimensions={modalDimensions}
+          projectsLength={projects.length}
+          setSelectedProject={setSelectedProject}
+          selectedProject={selectedProject}
         />
       </Modal>
     </>

@@ -20,7 +20,7 @@ const store = configureStore({
 
 const newMode = "dark";
 const newTheme = "mint";
-const newLanguage = "en";
+const newLanguage = "fr";
 
 store.dispatch(setMode(newMode));
 store.dispatch(setTheme(newTheme));

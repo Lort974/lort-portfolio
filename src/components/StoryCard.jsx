@@ -1,8 +1,3 @@
-import rocket from "../assets/images/rocket.svg";
-import fall from "../assets/images/fall.png";
-import shop from "../assets/images/shop.png";
-import bacteries from "../assets/images/bacteries.png";
-import voyage from "../assets/images/voyage.png";
 import { useTranslation } from "react-i18next";
 
 const StoryCard = () => {
@@ -62,9 +57,9 @@ const StoryCard = () => {
               </g>
             </svg>
           </div>
-          <div className="story__content__timeline__card__content__text">
+          <p className="story__content__timeline__card__content__text">
             {t("2024Content")}
-          </div>
+          </p>
         </div>
       </div>
       <div className="story__content__timeline__card">
@@ -96,9 +91,9 @@ const StoryCard = () => {
               </g>
             </svg>
           </div>
-          <div className="story__content__timeline__card__content__text">
+          <p className="story__content__timeline__card__content__text">
             {t("2022Content")}
-          </div>
+          </p>
         </div>
       </div>
       <div className="story__content__timeline__card">
@@ -170,9 +165,9 @@ const StoryCard = () => {
               </g>
             </svg>
           </div>
-          <div className="story__content__timeline__card__content__text">
+          <p className="story__content__timeline__card__content__text">
             {t("2018Content")}
-          </div>
+          </p>
         </div>
       </div>
       <div className="story__content__timeline__card">
@@ -218,9 +213,9 @@ const StoryCard = () => {
               </g>
             </svg>
           </div>
-          <div className="story__content__timeline__card__content__text">
+          <p className="story__content__timeline__card__content__text">
             {t("2013Content")}
-          </div>
+          </p>
         </div>
       </div>
       <div className="story__content__timeline__card">
@@ -267,9 +262,9 @@ const StoryCard = () => {
               </g>
             </svg>
           </div>
-          <div className="story__content__timeline__card__content__text">
+          <p className="story__content__timeline__card__content__text">
             {t("2011Content")}
-          </div>
+          </p>
         </div>
       </div>
     </>

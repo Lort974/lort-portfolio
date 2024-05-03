@@ -140,6 +140,31 @@
     }
   }
 
+  @keyframes translating {
+    0% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+
+    25%,
+    75% {
+      opacity: 0.8;
+      filter: blur(16px);
+    }
+
+    90%,
+    100% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+
+  .--translating {
+    animation-name: translating;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+  }
+
   .settings-modal {
     animation-name: settings-modal-animation;
     animation-duration: 200ms;

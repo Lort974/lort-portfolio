@@ -12,7 +12,7 @@ const Projects = () => {
           style={{ backgroundImage: `url(${projectsBackground})` }}
         ></div>
         <h1 className="projects__title --view-animated --text-fade-in --entry-text">
-          {t("title")}
+          <span>{t("title")}</span>
         </h1>
         <div className="projects__content">
           <div className="projects__content__list">

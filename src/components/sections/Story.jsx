@@ -1,41 +1,44 @@
 import StoryCard from "../StoryCard";
 import storyBackground from "../../assets/images/story-background.jpg";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSwipeable } from "react-swipeable";
 
 const Story = () => {
   const { t } = useTranslation("story");
   // Gérer le défilement des cartes
-  const storyTimeline = useRef("storyTimeline");
   const [sliding, setSliding] = useState("0px");
   const [currentSlide, setCurrentSlide] = useState(1);
   const [timelineLength, setTimelineLength] = useState(null);
   const [timelineWidth, setTimelineWidth] = useState(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [prevWindowWidth, setPrevWindowWidth] = useState(window.innerWidth);
 
   const handleSlide = (direction) => {
-    setCurrentSlide((currentSlide) => currentSlide + direction);
-    const slidingToUse = sliding === "100%" ? "0px" : sliding;
-    setSliding(
-      parseInt(slidingToUse.substring(0, slidingToUse.length - 2)) +
-        (timelineWidth + 64) * -direction +
-        "px"
-    );
-    storyTimeline.current.classList.add("story__content__timeline--moving");
-    const timeOut = setTimeout(() => {
-      storyTimeline.current.classList.remove(
-        "story__content__timeline--moving"
+    if (
+      (currentSlide < timelineLength && direction === 1) ||
+      (currentSlide > 1 && direction === -1)
+    ) {
+      setCurrentSlide((currentSlide) => currentSlide + direction);
+      const slidingToUse = sliding === "100%" ? "0px" : sliding;
+      setSliding(
+        parseInt(slidingToUse.substring(0, slidingToUse.length - 2)) +
+          (timelineWidth + 64) * -direction +
+          "px"
       );
-      clearTimeout(timeOut);
-    }, 300);
+    }
   };
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      setCurrentSlide(1);
-      setSliding("0px");
+      const currentWindowWidth = window.innerWidth;
+      if (prevWindowWidth !== currentWindowWidth) {
+        setWindowWidth(currentWindowWidth);
+        setCurrentSlide(1);
+        setSliding("0px");
+        setPrevWindowWidth(currentWindowWidth);
+      }
     };
 
     window.addEventListener("resize", handleResize);
@@ -43,17 +46,26 @@ const Story = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [prevWindowWidth]);
 
   useEffect(() => {
-    setTimelineLength(storyTimeline.current.childNodes.length);
+    const storyTimeline = document.querySelector(".story__content__timeline");
+    if (storyTimeline) {
+      setTimelineLength(storyTimeline.childNodes.length);
 
-    //calculer la largeur d'une carte
-    const dimensions = storyTimeline.current.getBoundingClientRect();
-    const timelineWidth = dimensions.width;
-    const cardWidth = (timelineWidth - 4 * 64) / 5;
-    setTimelineWidth(cardWidth);
+      //calculer la largeur d'une carte
+      const dimensions = storyTimeline.childNodes[0].getBoundingClientRect();
+      const cardWidth = dimensions.width;
+      setTimelineWidth(cardWidth);
+    }
   }, [windowWidth]);
+
+  //gérer le swipe :
+  const handlers = useSwipeable({
+    onSwipedLeft: () => handleSlide(1),
+    onSwipedRight: () => handleSlide(-1),
+    // Ajoutez d'autres directions si nécessaire
+  });
 
   return (
     <>
@@ -63,13 +75,13 @@ const Story = () => {
           style={{ backgroundImage: `url(${storyBackground})` }}
         ></div>
         <h1 className="story__title --view-animated --text-fade-in --entry-text">
-          {t("title")}
+          <span>{t("title")}</span>
         </h1>
         <div className="story__content">
           <div
-            ref={storyTimeline}
             className="story__content__timeline"
             style={{ left: sliding }}
+            {...handlers}
           >
             <StoryCard />
           </div>

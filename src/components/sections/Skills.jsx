@@ -49,7 +49,7 @@ const Skills = () => {
     <>
       <section className="skills" id="my-skills">
         <h1 className="skills__title --view-animated --text-fade-in --entry-text">
-          {t("title")}
+          <span>{t("title")}</span>
         </h1>
         <div className="skills__content">
           <div className="skills__content__headers">
@@ -107,9 +107,9 @@ const Skills = () => {
               <h2 className="skills__content__descriptions__element__title">
                 {t("interactiveSubtitle")}
               </h2>
-              <div className="skills__content__descriptions__element__text">
+              <p className="skills__content__descriptions__element__text">
                 {t("interactiveDescription")}
-              </div>
+              </p>
             </div>
             <div
               className="skills__content__descriptions__element --covered"
@@ -123,9 +123,9 @@ const Skills = () => {
               <h2 className="skills__content__descriptions__element__title">
                 {t("gorgeousSubtitle")}
               </h2>
-              <div className="skills__content__descriptions__element__text">
+              <p className="skills__content__descriptions__element__text">
                 {t("gorgeousDescription")}
-              </div>
+              </p>
             </div>
             <div
               className="skills__content__descriptions__element --covered"
@@ -139,9 +139,9 @@ const Skills = () => {
               <h2 className="skills__content__descriptions__element__title">
                 {t("fluidSubtitle")}
               </h2>
-              <div className="skills__content__descriptions__element__text">
+              <p className="skills__content__descriptions__element__text">
                 {t("fluidDescription")}
-              </div>
+              </p>
             </div>
             <div
               className="skills__content__descriptions__element --covered"
@@ -155,9 +155,9 @@ const Skills = () => {
               <h2 className="skills__content__descriptions__element__title">
                 {t("connectedSubtitle")}
               </h2>
-              <div className="skills__content__descriptions__element__text">
+              <p className="skills__content__descriptions__element__text">
                 {t("connectedDescription")}
-              </div>
+              </p>
             </div>
           </div>
         </div>

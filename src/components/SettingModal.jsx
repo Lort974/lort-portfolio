@@ -10,16 +10,32 @@ const SettingsModal = ({ settingsPosition, handleCloseSettings }) => {
   const mode = useSelector((state) => state.settingsReducer.mode);
   const theme = useSelector((state) => state.settingsReducer.theme);
   const language = useSelector((state) => state.settingsReducer.language);
+
   const handleMode = (e, newMode) => {
     dispatch(setMode(newMode));
   };
+
   const handleTheme = (e, newTheme) => {
     dispatch(setTheme(newTheme));
   };
+
   const { i18n } = useTranslation();
   const handleLanguage = (e, newLanguage) => {
+    const allTexts = document.querySelectorAll(
+      "p, h1, h2, h3, h4, button, li, span"
+    );
     dispatch(setLanguage(newLanguage));
-    i18n.changeLanguage(newLanguage);
+    allTexts.forEach((element) => {
+      element.classList.add("--translating");
+    });
+    setTimeout(() => {
+      i18n.changeLanguage(newLanguage);
+      setTimeout(() => {
+        allTexts.forEach((element) => {
+          element.classList.remove("--translating");
+        });
+      }, 150);
+    }, 50);
   };
 
   useEffect(() => {

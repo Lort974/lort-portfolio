@@ -309,6 +309,25 @@ body.dark-olive {
       opacity: 1;
     }
   }
+  @keyframes translating {
+    0% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+    25%, 75% {
+      opacity: 0.8;
+      filter: blur(16px);
+    }
+    90%, 100% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+  .--translating {
+    animation-name: translating;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+  }
   .settings-modal {
     animation-name: settings-modal-animation;
     animation-duration: 200ms;
@@ -826,6 +845,25 @@ footer {
       opacity: 1;
     }
   }
+  @keyframes translating {
+    0% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+    25%, 75% {
+      opacity: 0.8;
+      filter: blur(16px);
+    }
+    90%, 100% {
+      opacity: 1;
+      filter: blur(0px);
+    }
+  }
+  .--translating {
+    animation-name: translating;
+    animation-duration: 200ms;
+    animation-timing-function: linear;
+  }
   .settings-modal {
     animation-name: settings-modal-animation;
     animation-duration: 200ms;
@@ -1317,7 +1355,7 @@ footer {
   display: grid;
   box-sizing: border-box;
   gap: 16px;
-  padding: 32px;
+  padding: 0 0 32px;
   border: 1px solid var(--static-border);
   border-radius: 8px;
   box-shadow: 0 0px 8px var(--interactive-border);
@@ -1328,7 +1366,7 @@ footer {
 }
 @media screen and (max-width: 768px) {
   .projects .projects__content .projects__content__list .projects__content__list__card {
-    padding: 16px;
+    padding: 0 0 16px;
     gap: 8px;
   }
 }
@@ -1343,9 +1381,13 @@ footer {
     opacity: 100% !important;
     transition: all 100ms linear;
   }
-  .projects .projects__content .projects__content__list .projects__content__list__card.--opening > * {
-    filter: blur(8px) !important;
-    transition: all 100ms linear;
+  .projects .projects__content .projects__content__list .projects__content__list__card.--opening > h4,
+  .projects .projects__content .projects__content__list .projects__content__list__card.--opening > p,
+  .projects .projects__content .projects__content__list .projects__content__list__card.--opening > button,
+  .projects .projects__content .projects__content__list .projects__content__list__card.--opening > h2,
+  .projects .projects__content .projects__content__list .projects__content__list__card.--opening > img {
+    opacity: 0%;
+    transition: all 1000ms linear;
   }
   .projects .projects__content .projects__content__list .projects__content__list__card:nth-child(1) {
     scale: 0.9;
@@ -1396,18 +1438,27 @@ footer {
     z-index: 2;
   }
 }
+.projects .projects__content .projects__content__list .projects__content__list__card h4,
+.projects .projects__content .projects__content__list .projects__content__list__card p,
+.projects .projects__content .projects__content__list .projects__content__list__card button {
+  margin: 0 32px;
+}
 .projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__picture {
   width: 100%;
-  height: 200px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 16px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  aspect-ratio: 1/1;
+  width: 100%;
+  object-fit: cover;
+  grid-column: 1/2;
+  grid-row: 1/2;
 }
-@media screen and (max-width: 768px) {
-  .projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__picture {
-    margin: 8px 0;
-  }
+.projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__title {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  align-self: end;
+  padding: 16px 32px 0;
+  background: linear-gradient(to top, var(--subtle-background) 25%, transparent);
 }
 .projects .projects__content .projects__content__list .projects__content__list__card .projects__content__list__card__action {
   margin-top: 16px;
@@ -1458,7 +1509,7 @@ footer {
   opacity: 0%;
   background-color: var(--item);
   width: 100%;
-  padding: 16px;
+  padding: 16px 16px 32px 16px;
   border-top-right-radius: 16px;
   border-bottom-right-radius: 16px;
   border-left: 1px solid var(--static-border);
@@ -1478,12 +1529,46 @@ footer {
   color: var(--low-text);
   font-weight: 700;
   opacity: 72%;
+  z-index: 0;
 }
 @media screen and (max-width: 768px) {
   .project-modal > .--category .--category__name {
     top: 8px;
     left: 8px;
   }
+}
+.project-modal .project-modal__navigation {
+  position: fixed;
+  top: 50%;
+  transform: translate(0%, -50%);
+  z-index: 10;
+  padding: 0px;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: var(--transparent-background);
+  backdrop-filter: blur(4px);
+  border: 1px solid var(--interactive-border);
+  box-shadow: 0px 0px 4px var(--interactive-border);
+}
+.project-modal .project-modal__navigation.--previous {
+  left: 16px;
+}
+.project-modal .project-modal__navigation.--next {
+  right: 16px;
+}
+@media screen and (max-width: 768px) {
+  .project-modal .project-modal__navigation.--previous {
+    left: 8px;
+  }
+  .project-modal .project-modal__navigation.--next {
+    right: 8px;
+  }
+}
+.project-modal .project-modal__navigation svg {
+  height: 24px;
+  width: 24px;
+  color: var(--high-text);
 }
 .project-modal .project-modal__picture {
   opacity: 0%;
@@ -1512,6 +1597,7 @@ footer {
   font-size: 16px;
   margin-left: 32px;
   font-weight: 400;
+  z-index: 1;
 }
 @media screen and (max-width: 768px) {
   .project-modal .project-modal__title .project-modal__link {
@@ -1533,8 +1619,9 @@ footer {
 .project-modal .project-modal__technologies {
   grid-area: modal-technologies;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(32px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(48px, 1fr));
   gap: 16px;
+  justify-content: flex-end;
 }
 .project-modal .project-modal__technologies div {
   display: flex;
@@ -1587,6 +1674,16 @@ footer {
   position: relative;
   align-self: start;
 }
+@media screen and (max-width: 768px) {
+  .contact .contact__content .contact__content__image {
+    width: 72%;
+    justify-self: center;
+  }
+  .contact .contact__content .contact__content__image img {
+    width: 100%;
+    margin: auto;
+  }
+}
 .contact .contact__content .contact__content__image::after {
   content: "";
   background-color: var(--action);
@@ -1611,12 +1708,6 @@ footer {
 }
 .contact .contact__content .contact__content__image img {
   width: 100%;
-}
-@media screen and (max-width: 768px) {
-  .contact .contact__content .contact__content__image img {
-    width: 72%;
-    justify-self: center;
-  }
 }
 .contact .contact__content .contact__content__ways {
   width: 100%;
@@ -1845,6 +1936,7 @@ footer {
   height: 24px;
   width: 24px;
   color: var(--item-active);
+  align-content: center;
 }
 .settings-modal .settings-modal__content .settings-modal__content__element .setting-option.--current {
   border: 1px solid var(--active-border);

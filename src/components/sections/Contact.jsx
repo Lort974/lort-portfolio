@@ -30,7 +30,7 @@ const Contact = () => {
                 </a>
               </p>
               <p className="contact__content__ways__list__element --item-pop-up">
-                <a href="tel:+336000000000">
+                <a href="tel:+33619833695">
                   <MobileIcon />
                   <span>{t("phone")}</span>
                 </a>

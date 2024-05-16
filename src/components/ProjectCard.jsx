@@ -40,7 +40,7 @@ const ProjectCard = () => {
         { name: "SASS", img: sass },
         { name: "Redux", img: redux },
       ],
-      demo: "#",
+      demo: "https://www.npmjs.com/package/data-table-by-lort",
       type: t("p1Type"),
     },
     {
@@ -63,7 +63,7 @@ const ProjectCard = () => {
     },
     {
       id: 3,
-      title: "My first client",
+      title: "Client #1",
       subTitle: t("p3Subtitle"),
       description: t("p3Description"),
       picture: doudou,

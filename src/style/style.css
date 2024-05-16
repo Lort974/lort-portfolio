@@ -995,6 +995,7 @@ footer {
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 .hero .hero__content {
   max-width: 600px;
@@ -1028,6 +1029,7 @@ footer {
   align-items: flex-start;
   gap: 64px;
   position: relative;
+  overflow: hidden;
 }
 .story .story__background {
   width: 100%;
@@ -1177,7 +1179,7 @@ footer {
 }
 @media screen and (max-width: 768px) {
   .skills {
-    min-height: 760px;
+    min-height: 900px;
   }
 }
 .skills .skills__content {

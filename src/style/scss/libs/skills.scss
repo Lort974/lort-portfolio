@@ -10,7 +10,7 @@
   margin: 0 auto 32px auto;
 
   @include respond-to(mobile) {
-    min-height: 760px;
+    min-height: 900px;
   }
 
   .skills__content {
